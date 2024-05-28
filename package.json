@@ -1,0 +1,10 @@
+{
+  "name": "Test_Task_Mykyta_Vyskrebentsev",
+  "type": "module",
+  "devDependencies": {
+    "@wdio/cli": "^8.38.0",
+    "@wdio/local-runner": "^8.38.0",
+    "@wdio/mocha-framework": "^8.38.0",
+    "@wdio/spec-reporter": "^8.38.0"
+  }
+}
