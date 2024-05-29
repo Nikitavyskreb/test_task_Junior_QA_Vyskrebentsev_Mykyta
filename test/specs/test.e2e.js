@@ -10,7 +10,7 @@ describe('My Login application', () => {
         await LoginPage.checkLogin();
     })
 
-    it('username should enter to the field and password should enter to the field, data is reprresented as dots instead of characters', async () => {
+    it('username should enter to the field and the password should be hidden under the mask', async () => {
 
         await LoginPage.open()
         await LoginPage.login('standard_user', 'secret_sauce')
