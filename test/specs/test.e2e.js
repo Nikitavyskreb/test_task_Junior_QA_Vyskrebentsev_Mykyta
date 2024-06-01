@@ -7,12 +7,11 @@ describe('My Login application', () => {
     await LoginPage.checkLogin();
   })
 
-    it('username should enter to the field and the password should be hidden under the mask', async () => {
-
-        await LoginPage.open()
-        await LoginPage.login('standard_user', 'secret_sauce')
-        await LoginPage.checkUserInput('standard_user', 'secret_sauce')
-    })
+  it('username should enter to the field and the password should be hidden under the mask', async () => {
+    await LoginPage.open()
+    await LoginPage.login('standard_user', 'secret_sauce')
+    await LoginPage.checkUserInput('standard_user', 'secret_sauce')
+  })
 
   it('should appear "Epic sadface: Username is required" alert if username field isnt field', async () => {
     await LoginPage.open()
