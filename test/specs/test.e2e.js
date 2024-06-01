@@ -9,7 +9,6 @@ describe('My Login application', () => {
 
   it('username should enter to the field and the password should be hidden under the mask', async () => {
     await LoginPage.open()
-    await LoginPage.login('standard_user', 'secret_sauce')
     await LoginPage.checkUserInput('standard_user', 'secret_sauce')
   })
 
