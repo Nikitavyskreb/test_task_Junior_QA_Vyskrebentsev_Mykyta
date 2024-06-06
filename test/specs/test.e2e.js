@@ -52,8 +52,6 @@ describe('Inventory page', () => {
   })
 
   it('should save item to the cart after the logout', async () => {
-    await loginPage.open()
-    await loginPage.login('standard_user', 'secret_sauce');
     await inventoryPage.addItemToCart('sauce-labs-backpack');
     await inventoryPage.checkItemAddedToCart();
     await inventoryPage.checkBurgerMenu();
@@ -65,8 +63,6 @@ describe('Inventory page', () => {
   })
 
   // it('should sort products correctly', async () => {
-  //   await loginPage.open();
-  //   await loginPage.login('standard_user', 'secret_sauce');
   //   await inventoryPage.checkSorting('lohi');
   // })
 
