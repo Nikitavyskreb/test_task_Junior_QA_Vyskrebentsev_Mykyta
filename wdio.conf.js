@@ -1,3 +1,8 @@
+import * as dotenv from 'dotenv';
+
+// Load the .env file
+dotenv.config();
+
 export const config = {
     //
     // ====================

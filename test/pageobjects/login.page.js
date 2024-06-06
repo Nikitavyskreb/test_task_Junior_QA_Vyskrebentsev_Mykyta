@@ -3,7 +3,7 @@ import Page from './page.js';
 /**
  * sub page containing specific selectors and methods for a specific page
  */
-class LoginPage extends Page {
+class loginPage extends Page {
   /**
    * define selectors using getter methods
    */
@@ -29,6 +29,14 @@ class LoginPage extends Page {
 
   get shoppingCart() {
     return $('*[data-test="shopping-cart-link"]');
+  }
+
+  get errorIconUsername() {
+    return $('input[data-test="username"] + .error_icon');
+  }
+
+  get errorIconPassword() {
+    return $('input[data-test="password"] + .error_icon');
   }
 
   /**
@@ -64,23 +72,31 @@ class LoginPage extends Page {
     expect(type).toBe('password');
   }
 
-  async checkUsernameAlert() {
+  async checkAlert(expectedAlertText) {
     await this.btnSubmit.click();
+
+    const isErrorIconUsernameDisplayed = await this.errorIconUsername.isDisplayed();
+    const isErrorIconPasswordDisplayed = await this.errorIconPassword.isDisplayed();
+    const isUsernameHighlighted = await this.inputUsername.getAttribute('class').then(classes => classes.includes('error'));
+    const isPasswordHighlighted = await this.inputPassword.getAttribute('class').then(classes => classes.includes('error'));
+
+    
+    expect(isErrorIconUsernameDisplayed).toBe(true);
+    expect(isErrorIconPasswordDisplayed).toBe(true);
+    expect(isUsernameHighlighted).toBe(true);
+    expect(isPasswordHighlighted).toBe(true);
+
     const alertText = await this.alertElement.getText();
-    expect(alertText).toBe('Epic sadface: Username is required');
+    expect(alertText).toBe(expectedAlertText);
   }
 
-  async checkPasswordAlert() {
-    await this.btnSubmit.click();
-    const alertText = await this.alertElement.getText();
-    expect(alertText).toBe('Epic sadface: Password is required');
-  }
+  async checkUsernamePasswordFieldsEmpty() {
+    const value1 = await this.inputUsername.getValue();
+    const value2 = await this.inputPassword.getValue();
 
-  async checkWrongPasswordAlert() {
-    await this.btnSubmit.click();
-    const alertText = await this.alertElement.getText();
-    expect(alertText).toBe('Epic sadface: Username and password do not match any user in this service');
+    expect(value1).toBe('');
+    expect(value2).toBe('');
   }
 }
 
-export default new LoginPage();
+export default new loginPage();
